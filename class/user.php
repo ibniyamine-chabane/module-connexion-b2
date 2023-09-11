@@ -50,11 +50,28 @@ class user {
         }
     }
     
-    public function connection($login, $password) {
+    public function connection(string $login, string $password) {
 
-
-
+        $this->login = $login;
+        $request = $this->database->prepare('SELECT * FROM user WHERE `login` = ?');
+        $request->execute(array($login));
+        $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
+        $logged = false;
+    
+        foreach ($userDatabase as $user) {
+            if ($this->login == $user['login'] && $password == $user['password']) {
+                $logged = true;
+                break;
+            }
+        }
+    
+        if ($logged) {
+            echo "Vous êtes connecté";
+        } else {
+            echo "Erreur dans le login ou le mot de passe";
+        }
     }
+    
 
     public function updateLogin() {
 
