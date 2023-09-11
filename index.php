@@ -1,3 +1,10 @@
+<?php 
+require_once("class/user.php");
+$moduleConnection = new user;
+$moduleConnection->register("karlo", "karlito", "dwarf", "rockandstone");
+// $moduleConnection->register("karl");
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +16,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap" rel="stylesheet">
     <script defer src="js/script.js"></script>
-    <title>Navbar</title>
+    <title>Accueil</title>
 </head>
 <body>
     <?php require_once("header.php"); ?>
