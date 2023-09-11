@@ -1,7 +1,7 @@
 <?php 
 require_once("class/user.php");
 $moduleConnection = new user;
-$moduleConnection->connection("elmacho", "admiN1337$");
+$moduleConnection->connection("karlo", "rockandstone");
 // $moduleConnection->register("karl");
 
 ?>

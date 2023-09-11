@@ -22,7 +22,7 @@
             <li><a href="hero">Accueil</a></li>
             <!-- <li><a href="hero">media</a></li>
             <li><a href="hero">A Propos</a></li>
-            <li><a href="hero">Contact</a></li> -->
+            <   li><a href="hero">Contact</a></li> -->
             <div class="divider"></div>
             <div class="buttons-burger-menu">
                 <a class="action-button pro">Insciption</a>

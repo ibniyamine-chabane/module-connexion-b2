@@ -43,7 +43,6 @@ class user {
     
             if ($result) {
                 $this->message = "Inscription réussie";
-                var_dump($this->message);
             } else {
                 $this->message = "Erreur lors de l'inscription";
             }
@@ -59,7 +58,7 @@ class user {
         $logged = false;
     
         foreach ($userDatabase as $user) {
-            if ($this->login == $user['login'] && $password == $user['password']) {
+            if ($this->login == $user['login'] && password_verify($password, $user['password'])) {
                 $logged = true;
                 break;
             }
@@ -73,7 +72,7 @@ class user {
     }
     
 
-    public function updateLogin() {
+    public function updateLogin(string $login) {
 
     }
 
