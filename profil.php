@@ -2,7 +2,7 @@
 session_start();
 require_once("class/user.php");
 $moduleConnection = new user;
-$moduleConnection->updateLogin("karlotto","rockandstone");
+// var_dump($moduleConnection->updateLogin("karlabina","rockandstone"));
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -19,6 +19,11 @@ $moduleConnection->updateLogin("karlotto","rockandstone");
 </head>
 <body>
     <?php require_once("header.php"); ?>
+<main>
+    <section>
+        
+    </section>
+</main>
     
 </body>
 </html>

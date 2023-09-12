@@ -1,9 +1,6 @@
 <?php 
+session_start();
 require_once("class/user.php");
-$moduleConnection = new user;
-$moduleConnection->register("karlo", "karlito", "dwarf", "rockandstone");
-// $moduleConnection->register("karl");
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -20,6 +17,18 @@ $moduleConnection->register("karlo", "karlito", "dwarf", "rockandstone");
 </head>
 <body>
     <?php require_once("header.php"); ?>
-    
+    <main>
+        <section>
+            <?php if (isset($_SESSION['login'])) : ?>
+                <div>
+                    <h2>Bonjour <?= $_SESSION['login'] ?></h2>
+                </div>
+            <?php else: ?>
+                <div>
+                    <h2>Bonjour inviter</h2>
+                </div>
+            <?php endif; ?>    
+        </section>    
+    </main>
 </body>
 </html>

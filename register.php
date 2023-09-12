@@ -12,25 +12,29 @@
 </head>
 <body>
     <?php require_once("header.php"); ?>
-    <form action="" class="form" method="post">
-        <div class="title">Inscription</div>
-        <div class="subtitle"></div>
-        <div class="input-container ic1">
-            <input id="firstname" name="firstname" class="input" type="text" placeholder=" " />
-            <div class="cut"></div>
-            <label for="firstname" class="placeholder">Prénom</label>
-        </div>
-        <div class="input-container ic2">
-            <input id="lastname" class="input" type="text" placeholder=" " />
-            <div class="cut"></div>
-            <label for="lastname" class="placeholder">Last name</label>
-        </div>
-        <div class="input-container ic2">
-          <input id="email" class="input" type="text" placeholder=" " />
-          <div class="cut cut-short"></div>
-          <label for="email" class="placeholder">Email</>
-        </div>
-        <button type="text" class="submit">submit</button>
-    </form>
+    <main>
+        <section>
+            <form action="" class="form" method="post">
+                <div class="title">Inscription</div>
+                <div class="subtitle"></div>
+                <div class="input-container ic1">
+                    <input id="firstname" name="firstname" class="input" type="text" placeholder=" " />
+                    <div class="cut"></div>
+                    <label for="firstname" class="placeholder">Prénom</label>
+                </div>
+                <div class="input-container ic2">
+                    <input id="lastname" class="input" type="text" placeholder=" " />
+                    <div class="cut"></div>
+                    <label for="lastname" class="placeholder">Last name</label>
+                </div>
+                <div class="input-container ic2">
+                  <input id="email" class="input" type="text" placeholder=" " />
+                  <div class="cut cut-short"></div>
+                  <label for="email" class="placeholder">Email</>
+                </div>
+                <button type="text" class="submit">submit</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>

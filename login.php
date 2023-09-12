@@ -32,23 +32,26 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
     <?php require_once("header.php"); ?>
-    <form action="" class="form" method="post">
-        <div class="title">Connexion</div>
-        <?php if(isset($message) && !empty($message)) : ?>
-            <div class="subtitle"><?= $message ?></div>
-        <?php endif; ?>
-        <div class="input-container ic1">
-            <input id="login" name="login" class="input" type="text" placeholder=" " />
-            <div class="cut"></div>
-            <label for="login" class="placeholder">Login</label>
-        </div>
-        <div class="input-container ic2">
-            <input id="password" name="password" class="input" type="password" placeholder=" " />
-            <div class="cut"></div>
-            <label for="lastname" class="placeholder">Mot de passe</label>
-        </div>
-        <button type="submit" name="submit" class="submit">Se Connecter</button>
-    </form>
-    
+    <main>
+        <section>
+            <form action="" class="form" method="post">
+                <div class="title">Connexion</div>
+                <?php if(isset($message) && !empty($message)) : ?>
+                    <div class="subtitle"><?= $message ?></div>
+                <?php endif; ?>
+                <div class="input-container ic1">
+                    <input id="login" name="login" class="input" type="text" placeholder=" " />
+                    <div class="cut"></div>
+                    <label for="login" class="placeholder">Login</label>
+                </div>
+                <div class="input-container ic2">
+                    <input id="password" name="password" class="input" type="password" placeholder=" " />
+                    <div class="cut"></div>
+                    <label for="lastname" class="placeholder">Mot de passe</label>
+                </div>
+                <button type="submit" name="submit" class="submit">Se Connecter</button>
+            </form>
+        </section>
+    </main>
 </body>
 </html>
