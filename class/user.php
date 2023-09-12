@@ -6,9 +6,9 @@ class user {
     private $firstname;
     private $lastname;
     private $database;
-    public $messageUpdateLogin;
-
-    public $message;
+    private $messageUpdateLogin;
+    private $messageUpdatePw;
+    private $message;
 
     public function __construct() {
         try {
@@ -85,7 +85,7 @@ class user {
         $requestUserLogged->execute(array($_SESSION['login']));
         $userLoggedData = $requestUserLogged->fetchAll(PDO::FETCH_ASSOC);
         $loginAvailable = true;
-        echo $userDatabase[0]['COUNT(*)'];
+         
         if ($userDatabase[0]['COUNT(*)'] > 0) {
             $loginAvailable = false;
             $this->messageUpdateLogin = "Ce login est déjà pris";
@@ -106,7 +106,12 @@ class user {
 
     }
 
-    public function updatePassword() {
+    public function updatePassword(string $password) {
+        
+        $hashedPassword = password_hash($password ,PASSWORD_DEFAULT);
+        $request = $this->database->prepare("UPDATE user SET `password` = (?) WHERE user.id = (?)");
+        $request->execute(array($hashedPassword, $_SESSION['id_user']));
+        $this->messageUpdatePw = "mot de passe modifié avec succes";
 
     }
 
@@ -116,6 +121,9 @@ class user {
 
     public function getMessageUpdateLogin() {
         return $this->messageUpdateLogin;
+    }
+    public function getMessageUpdatePassword() {
+        return $this->messageUpdatePw;
     }
     public function getUserLogged() {
         $request = $this->database->prepare("SELECT * FROM user WHERE `id` = ?");

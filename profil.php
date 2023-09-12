@@ -3,6 +3,7 @@ session_start();
 require_once("class/user.php");
 $moduleConnection = new user;
 $messageUpdateLogin = "";
+$messageUpdatePassword = "";
 $userLoggedData = $moduleConnection->getUserLogged();
 
 if (isset($_POST['submit-info'])) {
@@ -19,6 +20,34 @@ if (isset($_POST['submit-info'])) {
         $messageUpdateLogin = "veuillez remplir tous les champs";
     } 
 }
+
+if (isset($_POST['submit-password'])) {
+
+    if ($_POST['current-password'] && $_POST['new-password'] && $_POST['confirm-password']) {
+
+        $currentPassword = $_POST['current-password'];
+        $newPassword = $_POST['new-password'];
+        $confirmPassword = $_POST['confirm-password'];
+        $currentPasswordDb = $userLoggedData[0]['password'];
+
+        if (password_verify($currentPassword, $currentPasswordDb) && $newPassword == $confirmPassword) {
+
+            $moduleConnection->updatePassword($newPassword);
+            $messageUpdatePassword = $moduleConnection->getMessageUpdatePassword();
+
+        } else if ( $currentPassword != $currentPasswordDb) {
+            $messageUpdatePassword = "Erreur";
+
+        } else if ($newPassword != $confirmPassword) {
+            $messageUpdatePassword = "Mot de passe pas identique à la confirmation";
+        }
+
+    } else {
+        $messageUpdatePassword = "Veuillez remplir tous les champs";
+    }
+}
+
+
 
 // var_dump($moduleConnection->updateLogin("karlabinanano", "karlitomomo", "dwarf", "rockandstone",));
 ?>
@@ -70,8 +99,8 @@ if (isset($_POST['submit-info'])) {
 
             <form action="" class="form" method="post">
                 <div class="title">Changer le Mot de passe</div>
-                <?php if(isset($message) && !empty($message)) : ?>
-                    <div class="subtitle"><?= $message ?></div>
+                <?php if(isset($messageUpdatePassword) && !empty($messageUpdatePassword)) : ?>
+                    <div class="subtitle"><?= $messageUpdatePassword ?></div>
                 <?php endif; ?>
                 <div class="input-container ic1">
                     <input id="current-password" name="current-password" class="input" type="password" placeholder=" " />
@@ -88,7 +117,7 @@ if (isset($_POST['submit-info'])) {
                     <div class="cut radius-confirm-password"></div>
                     <label for="confirm-password" class="placeholder">Confirmez le nouveau mot de passe</label>
                 </div>
-                <button type="submit" name="submit" class="submit">Modifier le mpd</button>
+                <button type="submit" name="submit-password" class="submit">Modifier le mpd</button>
             </form>
         </div>
     </section>

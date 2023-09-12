@@ -232,6 +232,8 @@ header {
 .flex {
   display: flex;
   flex-wrap: wrap;
+  width: 80%;
+  margin: auto;
 }
 
 .radius-password {
