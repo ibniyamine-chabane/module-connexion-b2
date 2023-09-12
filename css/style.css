@@ -109,7 +109,8 @@ header {
     background-color: #15172ba8;
     border-radius: 20px;
     box-sizing: border-box;
-    height: 500px;
+    /* height: 500px; */
+    height: auto;
     padding: 20px;
     width: 320px;
     margin: auto;
@@ -226,7 +227,24 @@ header {
     background-color: #06b;
   }
   
+/* ----------- Profil.php -----------*/
 
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.radius-password {
+  width: 195px;
+}
+
+.radius-current-password {
+  width: 142px;
+}
+
+.radius-confirm-password {
+  width: 205px;
+}
 
 /* ---------- BURGER MENU -----------*/
 

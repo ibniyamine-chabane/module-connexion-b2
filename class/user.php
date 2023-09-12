@@ -6,6 +6,8 @@ class user {
     private $firstname;
     private $lastname;
     private $database;
+    public $messageUpdateLogin;
+
     public $message;
 
     public function __construct() {
@@ -72,7 +74,7 @@ class user {
     }
     
 
-    public function updateLogin(string $login, string $password) {
+    public function updateLogin(string $login, string $firstname, string $lastname, string $password) {
 
         $this->login = $login;
         $request = $this->database->prepare("SELECT COUNT(*) FROM user WHERE `login` = ?");
@@ -86,31 +88,39 @@ class user {
         echo $userDatabase[0]['COUNT(*)'];
         if ($userDatabase[0]['COUNT(*)'] > 0) {
             $loginAvailable = false;
-            echo "Ce login est déjà pris";
+            $this->messageUpdateLogin = "Ce login est déjà pris";
         }
 
         if (password_verify(!$password, $userLoggedData[0]['password'])) {
             
-            echo "Le mot de passe et invalide";
+            $this->messageUpdateLogin = "Le mot de passe et invalide";
 
         } else if ($loginAvailable = true && password_verify($password, $userLoggedData[0]['password'])) {
-            $request = $this->database->prepare("UPDATE user SET `login` = (?)
+            $request = $this->database->prepare("UPDATE user SET `login` = (?), `firstname` = (?), `lastname` = (?) 
                                                  WHERE user.id = (?)");
-            $request->execute(array($this->login, $_SESSION['id_user']));
+            $request->execute(array($this->login, $firstname, $lastname, $_SESSION['id_user']));
             $_SESSION['login'] = $this->login;
-            $this->message = "Le login a bien été changé";
-            echo "Le login a bien été changé";
+            $this->messageUpdateLogin = "Le login a bien été changé";
+            // echo "Le login a bien été changé";
         }
-
-
-       
-
-
 
     }
 
     public function updatePassword() {
 
+    }
+
+    public function getMessage() {
+        return $this->message;
+    }
+
+    public function getMessageUpdateLogin() {
+        return $this->messageUpdateLogin;
+    }
+    public function getUserLogged() {
+        $request = $this->database->prepare("SELECT * FROM user WHERE `id` = ?");
+        $request->execute(array($_SESSION['id_user']));
+        return $userData = $request->fetchAll(PDO::FETCH_ASSOC);
     }
 } 
 
