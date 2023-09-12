@@ -2,9 +2,20 @@
 session_start();
 require_once("class/user.php");
 $moduleConnection = new user;
-$moduleConnection->connection("karlo", "rockandstone");
-// $moduleConnection->register("karl");
-// var_dump($_SESSION['login']);
+$message = "";
+if (isset($_POST['submit'])) {
+
+    if ($_POST['login'] && $_POST['password']) {
+        $login = htmlspecialchars($_POST['login']);
+        $password = $_POST['password'];
+        $moduleConnection->connection($login, $password);
+
+    } else {
+        $message = "veuillez remplir tous les champs";
+    }   
+}
+ 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -21,26 +32,23 @@ $moduleConnection->connection("karlo", "rockandstone");
 </head>
 <body>
     <?php require_once("header.php"); ?>
-    <div class="form">
+    <form action="" class="form" method="post">
         <div class="title">Connexion</div>
-        <!-- <div class="subtitle">Let's create your account!</div> -->
+        <?php if(isset($message) && !empty($message)) : ?>
+            <div class="subtitle"><?= $message ?></div>
+        <?php endif; ?>
         <div class="input-container ic1">
-            <input id="firstname" name="firstname" class="input" type="text" placeholder=" " />
+            <input id="login" name="login" class="input" type="text" placeholder=" " />
             <div class="cut"></div>
-            <label for="firstname" class="placeholder">Prénom</label>
+            <label for="login" class="placeholder">Login</label>
         </div>
         <div class="input-container ic2">
-            <input id="lastname" name="lastname" class="input" type="text" placeholder=" " />
+            <input id="password" name="password" class="input" type="password" placeholder=" " />
             <div class="cut"></div>
-            <label for="lastname" class="placeholder">Nom</label>
+            <label for="lastname" class="placeholder">Mot de passe</label>
         </div>
-        <div class="input-container ic2">
-            <input id="email" class="input" type="text" placeholder=" " />
-            <div class="cut cut-short"></div>
-            <label for="email" class="placeholder">Email</>
-        </div>
-        <button type="text" class="submit">submit</button>
-    </div>
+        <button type="submit" name="submit" class="submit">Se Connecter</button>
+    </form>
     
 </body>
 </html>

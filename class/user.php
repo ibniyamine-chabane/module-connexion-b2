@@ -6,7 +6,7 @@ class user {
     private $firstname;
     private $lastname;
     private $database;
-    private $message;
+    public $message;
 
     public function __construct() {
         try {
@@ -15,8 +15,6 @@ class user {
         } catch(Exception $e) {
             die('Erreur : ' . $e->getMessage());
         }
-
-        echo "La class user à bien été instancier";
     }
 
     public function register(string $login, string $firstname, string $lastname, string $password) {
@@ -67,7 +65,7 @@ class user {
         }
     
         if ($logged) {
-            $this->message = "Vous êtes connecté";
+            header("Location: index.php");
         } else {
             $this->message = "Erreur dans le login ou le mot de passe";
         }
@@ -77,31 +75,37 @@ class user {
     public function updateLogin(string $login, string $password) {
 
         $this->login = $login;
-        $request = $this->database->prepare("SELECT * FROM user");
-        $request->execute(array());
+        $request = $this->database->prepare("SELECT COUNT(*) FROM user WHERE `login` = ?");
+        $request->execute(array($this->login));
         $userDatabase = $request->fetchAll(PDO::FETCH_ASSOC);
-        $loginChangeOk = false;
-        var_dump($_SESSION['login']);
-
-        foreach ($userDatabase as $user) {
-            
-            if ($this->login == $_SESSION['login'] && password_verify($password, $user['password'])) {
-                $loginChangeOk = true;
-            } else if ($this->login == $user['login']) {
-                // $this->message = "Ce login est déjà utilisé par une autre utilisateur";
-                echo "Ce login est déjà utilisé par une autre utilisateur";
-                $loginChangeOk = false;
-                break;
-            }
+        
+        $requestUserLogged = $this->database->prepare("SELECT * FROM user WHERE `login` = ?");
+        $requestUserLogged->execute(array($_SESSION['login']));
+        $userLoggedData = $requestUserLogged->fetchAll(PDO::FETCH_ASSOC);
+        $loginAvailable = true;
+        echo $userDatabase[0]['COUNT(*)'];
+        if ($userDatabase[0]['COUNT(*)'] > 0) {
+            $loginAvailable = false;
+            echo "Ce login est déjà pris";
         }
 
-        if ($loginChangeOk == true) {
-            $request = $this->database->prepare("UPDATE user SET `login` = (?), `password` = (?)
+        if (password_verify(!$password, $userLoggedData[0]['password'])) {
+            
+            echo "Le mot de passe et invalide";
+
+        } else if ($loginAvailable = true && password_verify($password, $userLoggedData[0]['password'])) {
+            $request = $this->database->prepare("UPDATE user SET `login` = (?)
                                                  WHERE user.id = (?)");
-            $request->execute(array($this->login, $password, $_SESSION['id_user']));
+            $request->execute(array($this->login, $_SESSION['id_user']));
+            $_SESSION['login'] = $this->login;
             $this->message = "Le login a bien été changé";
             echo "Le login a bien été changé";
         }
+
+
+       
+
+
 
     }
 
