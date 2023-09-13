@@ -19,15 +19,35 @@ require_once("class/user.php");
     <?php require_once("header.php"); ?>
     <main>
         <section>
-            <?php if (isset($_SESSION['login'])) : ?>
+            <article>
+                <div class="container-home">
+                    <?php if (isset($_SESSION['login'])) : ?>
+                        <div>
+                            <h2>Bonjour <?= $_SESSION['login'] ?></h2>
+                        </div>
+                    <?php else: ?>
+                        <div>
+                            <h2>Bonjour inviter</h2>
+                        </div>
+                    <?php endif; ?>
+                </div>  
                 <div>
-                    <h2>Bonjour <?= $_SESSION['login'] ?></h2>
+                    <h3>Bienvenue sur Module de Connexion</h3>
+                    <p>Je suis ravis de vous accueillir sur Module de connexion, 
+                       un projet passionnant que j'ai développé dans le cadre de ma formation à La Plateforme_. 
+                       J'ai conçue ce site pour vous offrir une expérience utilisateur exceptionnelle,
+                       tout en mettant en pratique les compétences que j'ai acquis dans le cadre de ma formation.
+                    </p>
+                    <p>
+                        il sera possible de dans ce site de :<br>
+                        <strong>S'inscrire</strong> : avec un login, prénom, nom et mot de passe. <br>
+                        <strong>Se Connecter</strong> : se connceter à votre compte avec le login et le mot de passe 
+                        que vous aurez choisie lors de votre inscription.<br>
+                        <strong>Modifier sont profil</strong> : Mettez à jour vos informations à tout moment. 
+                        Que ce soit votre login, prénom, nom ou mot de passe. 
+                    </p>
                 </div>
-            <?php else: ?>
-                <div>
-                    <h2>Bonjour inviter</h2>
-                </div>
-            <?php endif; ?>    
+            </article>  
         </section>    
     </main>
 </body>
