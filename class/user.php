@@ -43,7 +43,7 @@ class User {
     
             if ($result) {
                 $this->message = "Inscription réussie";
-                // header('Location: login.php');
+                header('Location: login.php');
             } else {
                 $this->message = "Erreur lors de l'inscription";
             }
@@ -131,6 +131,14 @@ class User {
         $request->execute(array($_SESSION['id_user']));
         return $userData = $request->fetchAll(PDO::FETCH_ASSOC);
     }
+
+    public function getAllUsers() {
+        $request = $this->database->prepare("SELECT * FROM user");
+        $request->execute(array());
+        return $userData = $request->fetchAll(PDO::FETCH_ASSOC);
+    }
+
+
 } 
 
 ?>
