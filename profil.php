@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once("class/user.php");
-$moduleConnection = new user;
+$moduleConnection = new User;
 $messageUpdateLogin = "";
 $messageUpdatePassword = "";
 $userLoggedData = $moduleConnection->getUserLogged();

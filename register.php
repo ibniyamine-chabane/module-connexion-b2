@@ -1,3 +1,27 @@
+<?php
+session_start();
+require_once("class/user.php");
+$moduleConnection = new User;
+$message = "";
+
+if (isset($_POST['submit'])) {
+
+    if ($_POST['login'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['password']) {
+
+        $login = htmlspecialchars($_POST['login']);
+        $firstname = htmlspecialchars($_POST['firstname']);
+        $lastname = htmlspecialchars($_POST['lastname']);
+        $password = $_POST['password'];
+
+        $moduleConnection->register($login, $firstname, $lastname, $password);
+        $message = $moduleConnection->getMessage();
+
+    } else {
+        $message = "Veuillez remplir tous les champs";
+    }
+}
+
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -16,23 +40,30 @@
         <section>
             <form action="" class="form" method="post">
                 <div class="title">Inscription</div>
-                <div class="subtitle"></div>
+                <?php if(isset($message) && !empty($message)) : ?>
+                    <div class="subtitle"><?= $message ?></div>
+                <?php endif; ?>
+                <div class="input-container ic1">
+                    <input id="login" name="login" class="input" type="text" placeholder=" " />
+                    <div class="cut cut-short"></div>
+                    <label for="login" class="placeholder">Login</label>
+                </div>
                 <div class="input-container ic1">
                     <input id="firstname" name="firstname" class="input" type="text" placeholder=" " />
                     <div class="cut"></div>
                     <label for="firstname" class="placeholder">Prénom</label>
                 </div>
                 <div class="input-container ic2">
-                    <input id="lastname" class="input" type="text" placeholder=" " />
-                    <div class="cut"></div>
-                    <label for="lastname" class="placeholder">Last name</label>
+                    <input id="lastname" name="lastname" class="input" type="text" placeholder=" " />
+                    <div class="cut cut-short"></div>
+                    <label for="lastname" class="placeholder">Nom</label>
                 </div>
                 <div class="input-container ic2">
-                  <input id="email" class="input" type="text" placeholder=" " />
-                  <div class="cut cut-short"></div>
-                  <label for="email" class="placeholder">Email</>
+                  <input id="password" name="password" class="input" type="password" placeholder=" " />
+                  <div class="cut cut-adjusted"></div>
+                  <label for="password" class="placeholder">Mot de passe</label>
                 </div>
-                <button type="text" class="submit">submit</button>
+                <button type="text" name="submit" class="submit">S'inscrire</button>
             </form>
         </section>
     </main>

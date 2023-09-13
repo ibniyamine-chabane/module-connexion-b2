@@ -1,7 +1,7 @@
 <?php 
 session_start();
 require_once("class/user.php");
-$moduleConnection = new user;
+$moduleConnection = new User;
 $message = "";
 if (isset($_POST['submit'])) {
 
@@ -9,6 +9,7 @@ if (isset($_POST['submit'])) {
         $login = htmlspecialchars($_POST['login']);
         $password = $_POST['password'];
         $moduleConnection->connection($login, $password);
+        $message = $moduleConnection->getMessage();
 
     } else {
         $message = "veuillez remplir tous les champs";

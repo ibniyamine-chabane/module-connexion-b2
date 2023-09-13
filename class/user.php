@@ -1,6 +1,6 @@
 <?php
 
-class user {
+class User {
 
     private $login;
     private $firstname;
@@ -43,6 +43,7 @@ class user {
     
             if ($result) {
                 $this->message = "Inscription réussie";
+                // header('Location: login.php');
             } else {
                 $this->message = "Erreur lors de l'inscription";
             }

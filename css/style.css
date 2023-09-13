@@ -10,6 +10,7 @@ body {
     background-image: url('https://images2.alphacoders.com/643/643331.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
 }
 /*************** HEADER ******************/
 li {
@@ -176,6 +177,10 @@ header {
   
   .cut-short {
     width: 50px;
+  }
+
+  .cut-adjusted {
+    width: 90px;
   }
   
   .input:focus ~ .cut,
