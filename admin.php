@@ -47,7 +47,14 @@ $moduleConnection = new User;
                                     <td class="column2"><?= $user['login'] ?></td>
                                     <td class="column3"><?= $user['firstname'] ?></td>
                                     <td class="column4"><?= $user['lastname'] ?></td>
-                                    <td class="column6"><a href="delete.php?id_u=<?= $user['id']?>" class="action-button">supprimer <?= $user['login'] ?></a></td>
+                                    <td class="column6">
+                                        <?php if($user['id'] == 1) : ?>
+                                            <span>Action impossible</span>
+                                        <?php else: ?>    
+                                            <a href="delete.php?id_u=<?= $user['id']?>" class="action-button">Delete <?= $user['login'] ?></a>
+                                        <?php endif; ?>
+                                    </td>
+                                            
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
