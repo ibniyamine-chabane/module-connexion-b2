@@ -233,8 +233,18 @@ article {
   border-radius: 7px;
 }
 
+.home-text-position {
+  display: flex;
+  align-items: center;
+  min-height: 90vh;
+}
+
 article p {
   text-align: justify;
+}
+
+.home-button-box {
+  margin-top: 15px;
 }
 
 /* ----------- Profil.php -----------*/

@@ -18,7 +18,7 @@ require_once("class/user.php");
 <body>
     <?php require_once("header.php"); ?>
     <main>
-        <section>
+        <section class="home-text-position">
             <article>
                 <div class="container-home">
                     <?php if (isset($_SESSION['login'])) : ?>
@@ -46,6 +46,10 @@ require_once("class/user.php");
                         <strong>Modifier sont profil</strong> : Mettez à jour vos informations à tout moment. 
                         Que ce soit votre login, prénom, nom ou mot de passe. 
                     </p>
+                    <div class="home-button-box">
+                        <a href="login.php" class="action-button home-button">Connexion</a>
+                        <a href="register.php" class="action-button home-button">Inscription</a>
+                    </div>
                 </div>
             </article>  
         </section>    
