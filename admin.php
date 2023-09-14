@@ -1,8 +1,14 @@
 <?php 
 session_start();
+
+if (isset($_SESSION['id_user']) && $_SESSION['id_user'] !== 1) {
+    header("Location: index.php");
+} else if (!$_SESSION) {
+    header("Location: index.php");
+}
 require_once("class/user.php");
 $moduleConnection = new User;
-// var_dump($moduleConnection->getAllUsers());
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,7 +47,7 @@ $moduleConnection = new User;
                                     <td class="column2"><?= $user['login'] ?></td>
                                     <td class="column3"><?= $user['firstname'] ?></td>
                                     <td class="column4"><?= $user['lastname'] ?></td>
-                                    <td class="column6"><?= $user['id'] ?></td>
+                                    <td class="column6"><a href="delete.php?id_u=<?= $user['id']?>" class="action-button">supprimer <?= $user['login'] ?></a></td>
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
