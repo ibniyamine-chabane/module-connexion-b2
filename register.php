@@ -1,26 +1,40 @@
 <?php
 session_start();
-
-if(isset($_SESSION['id_user'])) {
-    header("Location: index.php");
-}
-
 require_once("class/user.php");
 $moduleConnection = new User;
 $message = "";
+
 
 if (isset($_POST['submit'])) {
 
     if ($_POST['login'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['password']) {
 
-        $login = htmlspecialchars($_POST['login']);
-        $firstname = htmlspecialchars($_POST['firstname']);
-        $lastname = htmlspecialchars($_POST['lastname']);
-        $password = $_POST['password'];
+        if (strlen($_POST['password']) < 8) {
 
-        $moduleConnection->register($login, $firstname, $lastname, $password);
-        $message = $moduleConnection->getMessage();
+            $message = "Le mot de passe doit contenir au moins 8 caractères.";
 
+        } else if (!preg_match("/[A-Z]/", $_POST['password'])) {
+
+            $message = "Le mot de passe doit contenir au moins une lettre majuscule.";
+
+        } else if (!preg_match("/[0-9]/", $_POST['password'])) {
+
+            $message = "Le mot de passe doit contenir au moins un chiffre.";
+
+        } else if (!preg_match("/[!@#$%^&*()_+{}\[\]:;<>,.?~\\-]/", $_POST['password'])) {
+
+            $message = "Le mot de passe doit contenir au moins un caractère spécial.";
+            
+        } else {
+            $login = htmlspecialchars($_POST['login']);
+            $firstname = htmlspecialchars($_POST['firstname']);
+            $lastname = htmlspecialchars($_POST['lastname']);
+            $password = $_POST['password'];
+            
+            $moduleConnection->register($login, $firstname, $lastname, $password);
+            $message = $moduleConnection->getMessage();
+        }
+            
     } else {
         $message = "Veuillez remplir tous les champs";
     }
