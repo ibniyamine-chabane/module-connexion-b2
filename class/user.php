@@ -138,6 +138,12 @@ class User {
         return $userData = $request->fetchAll(PDO::FETCH_ASSOC);
     }
 
+    public function deleteUser(int $id) {
+        $request = $this->database->prepare("DELETE FROM user WHERE `id` = ?");
+        $request->execute(array($_GET['id_u']));
+        header("Location: admin.php");
+    }
+
 
 } 
 
