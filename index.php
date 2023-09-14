@@ -47,8 +47,13 @@ require_once("class/user.php");
                         Que ce soit votre login, prénom, nom ou mot de passe. 
                     </p>
                     <div class="home-button-box">
+                    <?php if(isset($_SESSION['id_user'])) : ?>
+                        <a href="profil.php" class="action-button home-button">Profil</a>
+                        <a href="logout.php" class="action-button home-button red">Se déconnecter</a>
+                    <?php else: ?>
                         <a href="login.php" class="action-button home-button">Connexion</a>
                         <a href="register.php" class="action-button home-button">Inscription</a>
+                    <?php endif; ?>
                     </div>
                 </div>
             </article>  

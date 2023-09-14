@@ -14,7 +14,7 @@
         <div class="buttons">
             <?php if(isset($_SESSION['id_user'])): ?>
                 <a href="profil.php" class="action-button pro">Profil</a>
-                <a href="logout.php" class="action-button">Déconnexion</a>
+                <a href="logout.php" class="action-button red">Déconnexion</a>
             <?php else :?>
                 <a href="register.php" class="action-button pro">Inscription</a>
                 <a href="login.php" class="action-button">Connexion</a>
@@ -36,7 +36,7 @@
             <div class="buttons-burger-menu">
             <?php if(isset($_SESSION['id_user'])): ?>
                 <a href="profil.php" class="action-button pro">Profil</a>
-                <a href="logout.php" class="action-button">Déconnexion</a>
+                <a href="logout.php" class="action-button red">Déconnexion</a>
             <?php else :?>
                 <a href="register.php" class="action-button pro">Inscription</a>
                 <a href="login.php" class="action-button">Connexion</a>

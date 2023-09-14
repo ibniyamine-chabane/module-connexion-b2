@@ -274,6 +274,12 @@ table .action-button {
   background-color: #ff2c2c;
   border: 1px solid #ff2c2c;
 }
+
+.red {
+  background-color: #ff2c2c;
+  border: 1px solid #ff2c2c;
+}
+
 /* ---------- BURGER MENU -----------*/
 
 .burger-menu {
