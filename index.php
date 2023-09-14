@@ -3,17 +3,21 @@ session_start();
 require_once("class/user.php");
 ?>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
 <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Bienvenue sur Module de Connexion - Je suis ravis de vous accueillir sur Module de connexion, 
+                                      un projet passionnant que j'ai développé dans le cadre de ma formation à La Plateforme_. 
+                                      J'ai conçue ce site pour vous offrir une expérience utilisateur exceptionnelle,
+                                      tout en mettant en pratique les compétences que j'ai acquis dans le cadre de ma formation. " />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@1,300&display=swap" rel="stylesheet">
     <script defer src="js/script.js"></script>
-    <title>Accueil</title>
+    <title>Accueil - Module de Connexion fait par Ibni-yamine Chabane</title>
 </head>
 <body>
     <?php require_once("header.php"); ?>
