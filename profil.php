@@ -15,7 +15,7 @@ if (isset($_POST['submit-info'])) {
 
     if ($_POST['login'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['password-valid-login']) {
         
-        $login = htmlspecialchars($_POST['login']);
+        $login = htmlspecialchars(trim($_POST['login']));
         $firstname = htmlspecialchars($_POST['firstname']);
         $lastname = htmlspecialchars($_POST['lastname']);
         $password = $_POST['password-valid-login'];

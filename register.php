@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
             $message = "Le mot de passe doit contenir au moins un caractère spécial.";
             
         } else {
-            $login = htmlspecialchars($_POST['login']);
+            $login = htmlspecialchars(trim($_POST['login']));
             $firstname = htmlspecialchars($_POST['firstname']);
             $lastname = htmlspecialchars($_POST['lastname']);
             $password = $_POST['password'];
