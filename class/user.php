@@ -64,6 +64,21 @@ class User {
         }
     }
     
+/**
+ * Permet de connecter un utilisateur à son compte si il existe dans la BDD.
+ *
+ * Cette objet de la class USER vérifie si le login et le mot de passe entré correspond 
+ * au compte d'utilisateur dans la BDD,
+ * il y a une vérification de mot passe entrée avec le mode de passe 
+ * hashé enregistré de l'utilisateur dans la base de données.
+ * Si le login et le mot de passe correspond à l'utilisateur, 
+ * l'utlisateur sera redirigé vers la page de d'accueil.
+ * Sinon, un message d'erreur sera afficher.
+ *
+ * @param string $login     Le login d'utilisateur à qui va se connecter.
+ * @param string $password  Le mot de passe non hashé de l'utilisateur.
+ * @return void
+ */
     public function connection(string $login, string $password) {
 
         $this->login = $login;
