@@ -5,6 +5,8 @@ if(!isset($_SESSION['id_user'])) {
     header("Location: index.php");
 }
 
+// $reloatedReload = var_dump();
+
 require_once("class/user.php");
 $moduleConnection = new User;
 $messageUpdateLogin = "";
@@ -15,7 +17,7 @@ if (isset($_POST['submit-info'])) {
 
     if ($_POST['login'] && $_POST['firstname'] && $_POST['lastname'] && $_POST['password-valid-login']) {
         
-        $login = htmlspecialchars(trim($_POST['login']));
+        $login = htmlspecialchars(trim($_POST['login'])); 
         $firstname = htmlspecialchars($_POST['firstname']);
         $lastname = htmlspecialchars($_POST['lastname']);
         $password = $_POST['password-valid-login'];

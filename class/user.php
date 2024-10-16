@@ -19,6 +19,20 @@ class User {
         }
     }
 
+/**
+ * Inscrit un nouvel utilisateur dans la base de données.
+ *
+ * Cette fonction vérifie si le login est déjà utilisé. Si le login est disponible,
+ * elle hash le mot de passe et enregistre l'utilisateur dans la base de données.
+ * Si l'inscription réussit, l'utilisateur est redirigé vers la page de connexion.
+ * Sinon, un message d'erreur est affiché.
+ *
+ * @param string $login     Le nom d'utilisateur à enregistrer.
+ * @param string $firstname Le prénom de l'utilisateur.
+ * @param string $lastname  Le nom de famille de l'utilisateur.
+ * @param string $password  Le mot de passe non hashé de l'utilisateur.
+ * @return void
+ */
     public function register(string $login, string $firstname, string $lastname, string $password) {
         $this->login = $login;
     
